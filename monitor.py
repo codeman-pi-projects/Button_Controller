@@ -70,7 +70,9 @@ def str2bool(v):
 
 bin_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
 osd_path = bin_dir + '/osd/osd'
-rfkill_path = bin_dir + '/rfkill/rfkill'
+#rfkill_path = bin_dir + '/rfkill/rfkill'
+#already have rfkill installed, so don't need to reference the downloaded binary?
+rfkill_path = 'rfkill'
 
 # General Configuration
 generalConfig = configparser.ConfigParser()
