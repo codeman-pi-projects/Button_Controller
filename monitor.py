@@ -108,7 +108,8 @@ for key, pin in keysConfig.items('KEYS'):
 for key, pinSet in keysConfig.items('COMBOS'):
     pins = set(map(int, pinSet.split(',')))
     KEY_COMBOS.update({frozenset(pins): getattr(uinput, key.upper())})
-
+    
+    
 VOLUME_UP = int(hotkeys['VOLUME_UP'])
 VOLUME_DOWN = int(hotkeys['VOLUME_DOWN'])
 TOGGLE_WIFI = int(hotkeys['TOGGLE_WIFI'])
@@ -274,7 +275,7 @@ def handle_button(pin):
     global LAST_TRIGGERED_COMBO
     time.sleep(BOUNCE_TIME)
     state = 0 if gpio.input(pin) else 1
-
+    print(pin)
     if state == 1:
         COMBO_CURRENT_KEYS.add(pin)
     else:
