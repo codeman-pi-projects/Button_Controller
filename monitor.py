@@ -288,7 +288,8 @@ def handle_button(pin):
             device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 2)
             print("Emit 2")
         else:
-            device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 1)            
+            device.emit(uinput.KEY_ESC, 1)            
+            #device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 1)            
             print("Emit 1")
         LAST_TRIGGERED_COMBO = KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)]
     else:
