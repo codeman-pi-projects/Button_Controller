@@ -282,7 +282,8 @@ def handle_button(pin):
     else:
         COMBO_CURRENT_KEYS.discard(pin)
 
-    print(COMBO_CURRENT_KEYS)    
+    print(COMBO_CURRENT_KEYS)
+    print(KEY_COMBOS)
     if frozenset(COMBO_CURRENT_KEYS) in KEY_COMBOS:
         # If the current set of keys are in the mapping, execute the function
         if KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)] == LAST_TRIGGERED_COMBO:
