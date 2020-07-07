@@ -104,6 +104,7 @@ for key, pin in keysConfig.items('KEYS'):
     BUTTONS.append(int(pin))
     KEYS.update({int(pin): getattr(uinput, key.upper())})
     PREVIOUS_KEYSTATES.update({int(pin): 0})
+    print(KEYS)
 
 for key, pinSet in keysConfig.items('COMBOS'):
     pins = set(map(int, pinSet.split(',')))
