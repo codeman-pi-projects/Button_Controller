@@ -108,7 +108,7 @@ for key, pin in keysConfig.items('KEYS'):
 for key, pinSet in keysConfig.items('COMBOS'):
     pins = set(map(int, pinSet.split(',')))
     KEY_COMBOS.update({frozenset(pins): getattr(uinput, key.upper())})
-    print(getattr(uinput, key.upper())
+    print(getattr(uinput, key.upper()))
     
     
     
