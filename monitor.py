@@ -275,8 +275,7 @@ def handle_button(pin):
     global LAST_TRIGGERED_COMBO
     time.sleep(BOUNCE_TIME)
     state = 0 if gpio.input(pin) else 1
-    print(pin)
-    print(state)
+
     if state == 1:
         COMBO_CURRENT_KEYS.add(pin)
     else:
@@ -288,8 +287,10 @@ def handle_button(pin):
         # If the current set of keys are in the mapping, execute the function
         if KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)] == LAST_TRIGGERED_COMBO:
             device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 2)
+            print("was in the set")
         else:
             device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 1)
+            print("was not in the set")
         LAST_TRIGGERED_COMBO = KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)]
     else:
         if LAST_TRIGGERED_COMBO is not None:
