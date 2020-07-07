@@ -104,14 +104,11 @@ for key, pin in keysConfig.items('KEYS'):
     BUTTONS.append(int(pin))
     KEYS.update({int(pin): getattr(uinput, key.upper())})
     PREVIOUS_KEYSTATES.update({int(pin): 0})
-    print(KEYS)
-
+    
 for key, pinSet in keysConfig.items('COMBOS'):
     pins = set(map(int, pinSet.split(',')))
     KEY_COMBOS.update({frozenset(pins): getattr(uinput, key.upper())})
-    print(KEY_COMBOS)
-    
-    
+        
     
 VOLUME_UP = int(hotkeys['VOLUME_UP'])
 VOLUME_DOWN = int(hotkeys['VOLUME_DOWN'])
@@ -288,7 +285,8 @@ def handle_button(pin):
     if frozenset(COMBO_CURRENT_KEYS) in KEY_COMBOS:
         # If the current set of keys are in the mapping, execute the function
         if KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)] == LAST_TRIGGERED_COMBO:
-            device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 2)            
+            device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 0)            
+            #device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 2)            
         else:
             device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 1)            
         LAST_TRIGGERED_COMBO = KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)]
