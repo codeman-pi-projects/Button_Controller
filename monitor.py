@@ -108,7 +108,13 @@ for key, pin in keysConfig.items('KEYS'):
 for key, pinSet in keysConfig.items('COMBOS'):
     pins = set(map(int, pinSet.split(',')))
     KEY_COMBOS.update({frozenset(pins): getattr(uinput, key.upper())})
-        
+
+def merge_two_dicts(x, y):
+    z = x.copy()   # start with x's keys and values
+    z.update(y)    # modifies z with y's keys and values & returns None
+    return z
+
+keysFinal = merge_two_dicts(KEYS, KEY_COMBOS);
     
 VOLUME_UP = int(hotkeys['VOLUME_UP'])
 VOLUME_DOWN = int(hotkeys['VOLUME_DOWN'])
@@ -224,7 +230,8 @@ if monitoring_enabled:
 else:
     adc = False
 
-device = uinput.Device(KEYS.values(), name="OneForAll", version=0x3)
+#device = uinput.Device(KEYS.values(), name="OneForAll", version=0x3)
+device = uinput.Device(keysFinal.values(), name="OneForAll", version=0x3)
 
 time.sleep(1)
 
