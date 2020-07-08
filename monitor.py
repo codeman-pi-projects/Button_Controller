@@ -173,6 +173,7 @@ BOUNCE_TIME = 0.03  # Debounce time in seconds
 # GPIO Init
 #gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
 for button in BUTTONS:
+    print(button)
     if not button == -1:
         gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
         
