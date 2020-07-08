@@ -174,7 +174,7 @@ BOUNCE_TIME = 0.03  # Debounce time in seconds
 #gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
 for button in BUTTONS:
     print(button)
-    if not button == -1:
+    if not button < 0:
         gpio.setup(button, gpio.IN, pull_up_down=gpio.PUD_UP)
         
 
@@ -350,7 +350,7 @@ if keysConfig.has_option("HOTKEYS", "QUICKSAVE"):
 
 # Initialise Buttons
 for button in BUTTONS:
-    if not button == -1:
+    if not button < 0:
         gpio.add_event_detect(button, gpio.BOTH, callback=handle_button, bouncetime=1)
         logging.debug("Button: {}".format(button))
     
