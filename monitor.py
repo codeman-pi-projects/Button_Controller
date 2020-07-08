@@ -345,8 +345,10 @@ if keysConfig.has_option("HOTKEYS", "QUICKSAVE"):
 
 # Initialise Buttons
 for button in BUTTONS:
-    gpio.add_event_detect(button, gpio.BOTH, callback=handle_button, bouncetime=1)
-    logging.debug("Button: {}".format(button))
+    if not button == -1:
+        gpio.add_event_detect(button, gpio.BOTH, callback=handle_button, bouncetime=1)
+        logging.debug("Button: {}".format(button))
+    
 
 for key, pin in keysConfig.items('HOTKEYS'):
     HOTKEYS.append(int(pin))
