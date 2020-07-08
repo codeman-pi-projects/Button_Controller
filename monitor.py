@@ -293,8 +293,7 @@ def handle_button(pin):
     else:
         COMBO_CURRENT_KEYS.discard(pin)
 
-    if frozenset(COMBO_CURRENT_KEYS) in KEY_COMBOS:
-        print("Valid combo")
+    if frozenset(COMBO_CURRENT_KEYS) in KEY_COMBOS:        
         # If the current set of keys are in the mapping, execute the function
         if KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)] == LAST_TRIGGERED_COMBO:
             device.emit(KEY_COMBOS[frozenset(COMBO_CURRENT_KEYS)], 2)            
