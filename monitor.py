@@ -171,7 +171,11 @@ batt_shdn = int(battery['BATT_SHUTDOWN_VOLT'])
 BOUNCE_TIME = 0.03  # Debounce time in seconds
 
 # GPIO Init
-gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
+#gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
+for button in BUTTONS:
+    if not button == -1:
+        gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
+        
 
 if not SHUTDOWN == -1:
     gpio.setup(SHUTDOWN, gpio.IN, pull_up_down=gpio.PUD_UP)
