@@ -65,6 +65,7 @@ static RGBA8_T backgroundColour = { 0, 0, 0, 100 };
 static RGBA8_T textColour = { 255, 255, 255, 255 };
 static RGBA8_T greenColour = { 0, 255, 0, 200 };
 static RGBA8_T redColour = { 255, 0, 0, 200 };
+static RGBA8_T blueColour = { 0, 255, 0, 200 };
 static int battery = 0, infos = 0, hud = 1, charge = 0, low_battery = 0, audio = 0, wifi = 0, wifi_loaded = 0, voltage = 0, backlight = 0, vol_image = 0, infos_loaded = 0, warning_loaded = 0, joystick = 0, bluetooth = 0;
 static float temp = 0.f;
 
@@ -96,7 +97,7 @@ void updateBattery(float batval, IMAGE_LAYER_T* batteryLayer)
     IMAGE_T *image = &(batteryLayer->image);
     clearImageRGB(image,&clearColor);
     //to config params
-    RGBA8_T *col = battery < BATTERY_TH ? &redColour : &greenColour;
+    RGBA8_T *col = battery < BATTERY_TH ? &redColour : &blueColour;//&greenColour;
     imageBoxFilledRGB(image, 2,3,2+(int)round((batteryLayer->image.width-7)*batval),batteryLayer->image.height-3, col);
     changeSourceAndUpdateImageLayer(batteryLayer);
 }
