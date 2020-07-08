@@ -693,7 +693,8 @@ try:
         try:
             if not adc == False:
                 volt = readVoltage()
-                bat = getVoltagepercent(volt)
+                #bat = getVoltagepercent(volt)
+                bat = 66
             checkShdn(volt)
             updateOSD(volt, bat, 20, wifi, volume, lowbattery, info, charge, bluetooth)
             print 'update OSD'
