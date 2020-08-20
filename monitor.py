@@ -542,7 +542,8 @@ def readModeBluetooth(toggle=False):
 def doShutdown(channel=None):
     # check_call("sudo killall emulationstation", shell=True)
     # time.sleep(1)
-    check_call("sudo shutdown -h now", shell=True)
+    #check_call("sudo shutdown -h now", shell=True)
+    check_call("sudo poweroff", shell=True)
     try:
         sys.stdout.close()
     except:
