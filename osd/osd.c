@@ -97,7 +97,7 @@ void updateBattery(float batval, IMAGE_LAYER_T* batteryLayer)
     IMAGE_T *image = &(batteryLayer->image);
     clearImageRGB(image,&clearColor);
     //to config params
-    RGBA8_T *col = battery < BATTERY_TH ? &redColour : &blueColour;//&greenColour;
+    RGBA8_T *col = battery < BATTERY_TH ? &redColour : &greenColour; //&blueColour;
     imageBoxFilledRGB(image, 2,3,2+(int)round((batteryLayer->image.width-7)*batval),batteryLayer->image.height-3, col);
     changeSourceAndUpdateImageLayer(batteryLayer);
 }
