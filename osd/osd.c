@@ -63,7 +63,7 @@ volatile bool show = false;
 static RGBA8_T clearColor = {0,0,0,0};
 static RGBA8_T backgroundColour = { 0, 0, 0, 100 };
 static RGBA8_T textColour = { 255, 255, 255, 255 };
-static RGBA8_T greenColour = { 0, 255, 0, 200 };
+static RGBA8_T greenColour = { 0, 204, 0, 150 };
 static RGBA8_T redColour = { 255, 0, 0, 200 };
 static RGBA8_T blueColour = { 0, 0, 255, 200 };
 static int battery = 0, infos = 0, hud = 1, charge = 0, low_battery = 0, audio = 0, wifi = 0, wifi_loaded = 0, voltage = 0, backlight = 0, vol_image = 0, infos_loaded = 0, warning_loaded = 0, joystick = 0, bluetooth = 0;
