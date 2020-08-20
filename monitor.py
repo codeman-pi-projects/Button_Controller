@@ -34,6 +34,7 @@ import time
 import uinput
 from subprocess import Popen, PIPE, check_output, check_call
 from threading import Event
+import smbus
 
 # Batt variables
 voltscale = 118.0  # ADJUST THIS
@@ -175,6 +176,14 @@ batt_low = int(battery['BATT_LOW_VOLTAGE'])
 batt_shdn = int(battery['BATT_SHUTDOWN_VOLT'])
 
 BOUNCE_TIME = 0.03  # Debounce time in seconds
+
+#I2C bus for battery monitoring
+i2cbus = smbus.SMBus(1)    # 0 = /dev/i2c-0 (port I2C0), 1 = /dev/i2c-1 (port I2C1)
+BATT_ADDRESS = 0x36      #7 bit address (will be left shifted to add the read write bit)
+BATT_SOC_ADDR = 0x04
+BATT_VOLT_ADDR_HI = 0x02
+BATT_VOLT_ADDR_LO = 0x03
+
 
 # GPIO Init
 gpio.setup(BUTTONS, gpio.IN, pull_up_down=gpio.PUD_UP)
@@ -691,12 +700,9 @@ if JOYSTICK_ENABLED == 'True':
 try:
     while 1:
         try:
-            if not adc == False:
-                volt = readVoltage()
-                bat = getVoltagepercent(volt)
-            
-            bat = 67
-            checkShdn(volt)
+            bat = i2cbus.read_byte_data(BATT_ADDRESS, BATT_SOC_ADDR)
+                       
+            #checkShdn(volt)
             updateOSD(volt, bat, 20, wifi, volume, lowbattery, info, charge, bluetooth)
             print 'update OSD'
             overrideCounter.wait(10)
